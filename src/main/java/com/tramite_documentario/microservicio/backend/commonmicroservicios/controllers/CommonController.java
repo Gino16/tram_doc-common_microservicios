@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -18,7 +19,7 @@ public class CommonController<E, S extends CommonService<E>> {
     protected S service;
 
     @PostMapping
-    public ResponseEntity<?> guardar(@RequestBody E entity, BindingResult result){
+    public ResponseEntity<?> guardar(@Valid @RequestBody E entity, BindingResult result){
         if (result.hasErrors()){
             return this.validar(result);
         }
