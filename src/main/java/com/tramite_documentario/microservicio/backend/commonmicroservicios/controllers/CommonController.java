@@ -55,7 +55,7 @@ public class CommonController<E, S extends CommonService<E>> {
     protected ResponseEntity<?> validar(BindingResult result){
         Map<String, Object> errores = new HashMap<>();
         result.getFieldErrors().forEach(fieldError -> {
-            errores.put(fieldError.getField(), "El campo " + fieldError.getField());
+            errores.put(fieldError.getField(), "El campo " + fieldError.getField() + " " + fieldError.getDefaultMessage());
         });
         return ResponseEntity.badRequest().body(errores);
     }
